@@ -132,6 +132,7 @@
             this.textBox45 = new System.Windows.Forms.TextBox();
             this.textBox46 = new System.Windows.Forms.TextBox();
             this.textBox47 = new System.Windows.Forms.TextBox();
+            this.PrintButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Title
@@ -471,21 +472,21 @@
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(798, 219);
+            this.textBox12.Location = new System.Drawing.Point(800, 201);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(47, 20);
             this.textBox12.TabIndex = 37;
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(798, 196);
+            this.textBox13.Location = new System.Drawing.Point(800, 178);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(47, 20);
             this.textBox13.TabIndex = 38;
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(798, 173);
+            this.textBox14.Location = new System.Drawing.Point(800, 155);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(47, 20);
             this.textBox14.TabIndex = 39;
@@ -1049,11 +1050,22 @@
             this.textBox47.Size = new System.Drawing.Size(167, 20);
             this.textBox47.TabIndex = 126;
             // 
+            // PrintButton
+            // 
+            this.PrintButton.Location = new System.Drawing.Point(115, 10);
+            this.PrintButton.Name = "PrintButton";
+            this.PrintButton.Size = new System.Drawing.Size(129, 28);
+            this.PrintButton.TabIndex = 129;
+            this.PrintButton.Text = "Print";
+            this.PrintButton.UseVisualStyleBackColor = true;
+            this.PrintButton.Click += new System.EventHandler(this.PrintButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 651);
+            this.Controls.Add(this.PrintButton);
             this.Controls.Add(this.textBox45);
             this.Controls.Add(this.textBox46);
             this.Controls.Add(this.textBox47);
@@ -1272,5 +1284,6 @@
         private System.Windows.Forms.TextBox textBox45;
         private System.Windows.Forms.TextBox textBox46;
         private System.Windows.Forms.TextBox textBox47;
+        private System.Windows.Forms.Button PrintButton;
     }
 }

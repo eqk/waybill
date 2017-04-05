@@ -22,7 +22,17 @@ namespace waybill
             Application.Exit();
         }
 
+        private void PrintButton_Click(object sender, EventArgs e)
+        {
+            using (PrintForm frm = new PrintForm())
+            {
+                frm.ShowDialog();
+            }
+        }
+
        
+
+
 
         /* private void Form1_Load(object sender, EventArgs e)
           {
