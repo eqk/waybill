@@ -24,5 +24,7 @@ namespace waybill
             //this.reportViewer2.RefreshReport();
             this.reportViewer1.RefreshReport();
         }
+        
+
     }
 }

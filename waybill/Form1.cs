@@ -24,6 +24,7 @@ namespace waybill
 
         private void PrintButton_Click(object sender, EventArgs e)
         {
+         
             using (PrintForm frm = new PrintForm())
             {
                 frm.ShowDialog();

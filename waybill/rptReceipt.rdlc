@@ -493,7 +493,7 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>1.56641cm</Top>
+        <Top>1.20509cm</Top>
         <Left>10.98047cm</Left>
         <Height>0.6635cm</Height>
         <Width>2.11852cm</Width>
@@ -3302,12 +3302,6 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
-  <ReportParameters>
-    <ReportParameter Name="ReportParameter1">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-  </ReportParameters>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>fa9002dc-9830-44c8-b205-0e41a944f5b6</rd:ReportID>
 </Report>
