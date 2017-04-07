@@ -16,7 +16,7 @@ namespace waybill
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DriverForm());
+            Application.Run(new Form1());
         }
     }
 }

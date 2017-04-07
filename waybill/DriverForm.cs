@@ -30,11 +30,11 @@ namespace waybill
                 textBoxMedFor.Text = driver.med.ToShortDateString();
             } else
             {
-                this.clean();
+                this.cleanDriver();
             }
         }
 
-        private void clean()
+        private void cleanDriver()
         {
             textBoxCertFor.Text = "";
             textBoxCertNum.Text = "";
@@ -53,7 +53,7 @@ namespace waybill
                 
             } catch (FormatException fe)
             {
-                this.clean();
+                this.cleanDriver();
             }
         }
     }
