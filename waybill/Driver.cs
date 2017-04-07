@@ -10,6 +10,7 @@ namespace waybill
     class Driver
     {
         public int id { get; set; }
+        public int tab_num { get; set; }
         public string name { get; set; }
         public DateTime med { get; set; }
         public DateTime cert_for { get; set; }
@@ -18,36 +19,52 @@ namespace waybill
         {
             get
             {
-                return cert_num % 1000000;
+                return cert_num / 1000000;
             }
         }
         public Int64 cert_number
         {
             get
             {
-                return cert_num / 1000000;
+                return cert_num % 1000000;
             }
         }
 
-        public static Driver findById(string s)
+        public Driver(int tab_num, string name, DateTime med, DateTime cert_for, Int64 cert_num)
         {
-            int id;
-            if (int.TryParse(s, out id))
+            this.tab_num = tab_num;
+            this.name = name;
+            this.med = med;
+            this.cert_for = cert_for;
+            this.cert_num = cert_num;
+        }
+
+        public Driver(string tab_num, string name, string med, string cert_for, string cert_num)
+        {
+                this.tab_num = int.Parse(tab_num);
+                this.name = name;
+                this.med = DateTime.Parse(med);
+                this.cert_for = DateTime.Parse(cert_for);
+                this.cert_num = Int64.Parse(cert_num);
+        }
+
+        public static Driver findByTabNum(string s)
+        {
+            int tab_num;
+            if (int.TryParse(s, out tab_num))
             {
-                string queryString = string.Format("SELECT * FROM dbo.Drivers WHERE id = {0}", id);
-                SqlDataAdapter adapter = new SqlDataAdapter(queryString, Form1.sc);
+                StateDatabaseDataSetTableAdapters.DriversTableAdapter adapter = new StateDatabaseDataSetTableAdapters.DriversTableAdapter();
 
-                StateDataSet drivers = new StateDataSet();
-                adapter.Fill(drivers, "Drivers");
+                StateDatabaseDataSet.DriversDataTable drivers = new StateDatabaseDataSet.DriversDataTable();
+                adapter.Fill(drivers);
 
-                var driver = drivers.Drivers.FindById(id);
-                
+                StateDatabaseDataSet.DriversRow driver = drivers.Where(x => x.tab_num == tab_num).FirstOrDefault();
+
                 if (driver == null)
                 {
                     return null;
                 }
-                return new Driver { name = driver.name, med = driver.med, cert_for = driver.cert_for,
-                cert_num = driver.cert_num, id = driver.Id};
+                return new Driver(driver.Id, driver.name, driver.med, driver.cert_for, driver.cert_num);
             } else
             {
                 return null;
@@ -56,18 +73,15 @@ namespace waybill
 
         public static void updateOrCreate(Driver driver)
         {
-            int id = driver.id;
-            string queryString = string.Format("SELECT * FROM dbo.Drivers WHERE id = {0}", id);
-            SqlDataAdapter adapter = new SqlDataAdapter(queryString, Form1.sc);
+            int tab_num = driver.tab_num;
+            StateDatabaseDataSetTableAdapters.DriversTableAdapter adapter = new StateDatabaseDataSetTableAdapters.DriversTableAdapter();
 
-            StateDataSet drivers = new StateDataSet();
-            adapter.Fill(drivers, "Drivers");
-
-            var driverRow = drivers.Drivers.FindById(id);
-
+            StateDatabaseDataSet.DriversDataTable drivers = new StateDatabaseDataSet.DriversDataTable();
+            adapter.Fill(drivers);
+            StateDatabaseDataSet.DriversRow driverRow = drivers.Where(x => x.tab_num == tab_num).FirstOrDefault();
             if (driverRow == null)
             {
-                drivers.Drivers.AddDriversRow(driver.name, driver.med, driver.cert_num, driver.cert_for);
+                drivers.AddDriversRow(driver.name, driver.med, driver.cert_num, driver.cert_for, driver.tab_num);
             } else
             {
                 driverRow.name = driver.name;
@@ -75,7 +89,7 @@ namespace waybill
                 driverRow.cert_num = driver.cert_num;
                 driverRow.cert_for = driver.cert_for;
             }
-            drivers.AcceptChanges();
+            adapter.Update(drivers);
         }
     }
 }
