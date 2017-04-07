@@ -12,19 +12,30 @@ namespace waybill
 {
     public partial class PrintForm : Form
     {
+        public Form1 help;
+
         public PrintForm()
         {
             InitializeComponent();
         }
 
+       
         private void PrintForm_Load(object sender, EventArgs e)
         {
 
-           // this.reportViewer1.RefreshReport();
-            //this.reportViewer2.RefreshReport();
+            Dictionary<string, string> map = help.getMap();
+            foreach(var pair in map)
+            {
+                if (pair.Value != "")
+                    reportViewer1.LocalReport.SetParameters(new Microsoft.Reporting.WinForms.ReportParameter(pair.Key, pair.Value));
+                else reportViewer1.LocalReport.SetParameters(new Microsoft.Reporting.WinForms.ReportParameter(pair.Key, " "));
+            }
             this.reportViewer1.RefreshReport();
         }
-        
+
+
+
+
 
     }
 }
